@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SingleDatabaseMultiTenancy.Domain\SingleDatabaseMultiTenancy.Domain.csproj" />
+    <ProjectReference Include="..\SingleDatabaseMultiTenancy.Service\SingleDatabaseMultiTenancy.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+  </ItemGroup>
+
+</Project>

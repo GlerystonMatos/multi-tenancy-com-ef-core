@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "b5a43675-7b2e-4acd-a838-2f16ed17188e",
+		"name": "multi-tenancy-com-ef-core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3166767"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"item": [
+				{
+					"name": "/HealthCheck/Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"status é igual a 200\"] = responseCode.code === 200;\r",
+									"\r",
+									"try {\r",
+									"    responseJSON = JSON.parse(responseBody);\r",
+									"    tests['resposta é um JSON válido'] = true;\r",
+									"}\r",
+									"catch (e) {\r",
+									"    responseJSON = {};\r",
+									"    tests['resposta não é um JSON válido'] = false;\r",
+									"}\r",
+									"\r",
+									"tests[\"mensagem\"] = responseJSON.message === \"Aplicacao Funcionando!\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/HealthCheck/Check",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"HealthCheck",
+								"Check"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Authenticate",
+					"item": [
+						{
+							"name": "/Login/Authenticate Teste01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"tests[\"status é igual a 200\"] = responseCode.code === 200;",
+											"",
+											"try {",
+											"    responseJSON = JSON.parse(responseBody);",
+											"    tests['resposta é um JSON válido'] = true;",
+											"}",
+											"catch (e) {",
+											"    responseJSON = {};",
+											"    tests['resposta não é um JSON válido'] = false;",
+											"}",
+											"",
+											"pm.environment.set(\"token\", responseJSON.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"senha\": \"1234\",\r\n    \"login\": \"Teste01\",\r\n    \"tenant\": \"Tenant01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/Login/Authenticate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Login",
+										"Authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/Login/Authenticate Teste02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"tests[\"status é igual a 200\"] = responseCode.code === 200;",
+											"",
+											"try {",
+											"    responseJSON = JSON.parse(responseBody);",
+											"    tests['resposta é um JSON válido'] = true;",
+											"}",
+											"catch (e) {",
+											"    responseJSON = {};",
+											"    tests['resposta não é um JSON válido'] = false;",
+											"}",
+											"",
+											"pm.environment.set(\"token\", responseJSON.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"senha\": \"4567\",\r\n    \"login\": \"Teste02\",\r\n    \"tenant\": \"Tenant02\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/Login/Authenticate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Login",
+										"Authenticate"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Authenticated",
+					"item": [
+						{
+							"name": "/Login/Authenticated",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"tests[\"status é igual a 200\"] = responseCode.code === 200;\r",
+											"\r",
+											"try {\r",
+											"    responseJSON = JSON.parse(responseBody);\r",
+											"    tests['resposta é um JSON válido'] = true;\r",
+											"}\r",
+											"catch (e) {\r",
+											"    responseJSON = {};\r",
+											"    tests['resposta não é um JSON válido'] = false;\r",
+											"}\r",
+											"\r",
+											"tests[\"mensagem\"] = responseJSON.mensagem.match(\"Usuário autenticado\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/Login/Authenticated",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"Login",
+										"Authenticated"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "/OData/Usuario all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"status é igual a 200\"] = responseCode.code === 200;",
+									"",
+									"try {",
+									"    responseJSON = JSON.parse(responseBody);",
+									"    tests['resposta é um JSON válido'] = true;",
+									"}",
+									"catch (e) {",
+									"    responseJSON = {};",
+									"    tests['resposta não é um JSON válido'] = false;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/OData/Usuario",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"OData",
+								"Usuario"
+							],
+							"query": [
+								{
+									"key": "$select",
+									"value": "Id, Nome",
+									"disabled": true
+								},
+								{
+									"key": "$filter",
+									"value": "Nome eq 'Teste 01'",
+									"disabled": true
+								},
+								{
+									"key": "$filter",
+									"value": "Nome eq 'Teste 02'",
+									"disabled": true
+								},
+								{
+									"key": "$count",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "$top",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "$skip",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Animal",
+			"item": [
+				{
+					"name": "/OData/Animal all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"status é igual a 200\"] = responseCode.code === 200;",
+									"",
+									"try {",
+									"    responseJSON = JSON.parse(responseBody);",
+									"    tests['resposta é um JSON válido'] = true;",
+									"}",
+									"catch (e) {",
+									"    responseJSON = {};",
+									"    tests['resposta não é um JSON válido'] = false;",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/OData/Animal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"OData",
+								"Animal"
+							],
+							"query": [
+								{
+									"key": "$select",
+									"value": "Id, Nome",
+									"disabled": true
+								},
+								{
+									"key": "$filter",
+									"value": "Nome eq 'Cachorro'",
+									"disabled": true
+								},
+								{
+									"key": "$filter",
+									"value": "Nome eq 'Hamster'",
+									"disabled": true
+								},
+								{
+									"key": "$count",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "$top",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "$skip",
+									"value": "0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
