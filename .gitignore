@@ -355,4 +355,8 @@ observabilidade/*
 # Logs da aplicação
 logs/*
 
-*.env
+# Configurações ambientais
+*.env*
+
+# Chaves temporárias do .net
+*/temp-keys/*
