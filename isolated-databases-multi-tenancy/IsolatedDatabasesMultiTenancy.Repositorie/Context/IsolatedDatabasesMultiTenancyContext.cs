@@ -1,6 +1,7 @@
 ﻿using IsolatedDatabasesMultiTenancy.Data.Configuration;
 using IsolatedDatabasesMultiTenancy.Domain.Entities;
 using IsolatedDatabasesMultiTenancy.Domain.Interfaces.Services;
+using IsolatedDatabasesMultiTenancy.Domain.Tenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -42,10 +43,11 @@ namespace IsolatedDatabasesMultiTenancy.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            if (_tenantService.Get() != null)
+            TenantConfiguration configuration = _tenantService.Get();
+            if (configuration != null)
             {
-                builder.UseSqlServer(_tenantService.Get().ConnectionString);
-                _logger.LogInformation("ConnectionString: " + _tenantService.Get().ConnectionString);
+                builder.UseSqlServer(configuration.ConnectionString);
+                _logger.LogInformation("ConnectionString: " + configuration.ConnectionString);
             }
         }
     }

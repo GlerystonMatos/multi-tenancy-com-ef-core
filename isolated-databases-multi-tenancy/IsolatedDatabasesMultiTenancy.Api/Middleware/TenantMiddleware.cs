@@ -33,7 +33,7 @@ namespace IsolatedDatabasesMultiTenancy.Api.Middleware
             }
 
             _tenantService.Set(tenant);
-            _logger.LogInformation("Tenant: " + _tenantService.Get().Name);
+            _logger.LogInformation("Tenant: " + tenant.Name);
 
             return Task.CompletedTask;
         }

@@ -30,7 +30,7 @@ namespace IsolatedDatabasesMultiTenancy.Api.Controllers
         }
 
         /// <summary>
-        /// Autenticar usuário da naja
+        /// Autenticar usuário
         /// </summary>
         /// <param name="login"></param>
         /// <response code="200">Usuário autenticado.</response>
@@ -49,7 +49,7 @@ namespace IsolatedDatabasesMultiTenancy.Api.Controllers
             }
 
             _tenantService.Set(tenant);
-            _logger.LogInformation("Tenant: " + _tenantService.Get().Name);
+            _logger.LogInformation("Tenant: " + tenant.Name);
 
             UsuarioDto usuarioDto = _usuarioService.ObterUsuarioParaAutenticacao(login);
             _logger.LogInformation("Login realizado: " + usuarioDto.Nome);
@@ -70,7 +70,8 @@ namespace IsolatedDatabasesMultiTenancy.Api.Controllers
         [ProducesResponseType(typeof(ExceptionMessage), 400)]
         public IActionResult Authenticated()
         {
-            _logger.LogInformation("Tenant: " + _tenantService.Get().Name);
+            TenantConfiguration configuration = _tenantService.Get();
+            _logger.LogInformation("Tenant: " + configuration.Name);
             return Ok(new ExceptionMessage(string.Format("Usuário autenticado - {0}", User.Identity.Name)));
         }
     }
