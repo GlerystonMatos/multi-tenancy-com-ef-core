@@ -1,6 +1,6 @@
-﻿using Microsoft.OData.Edm;
+﻿using IsolatedDatabasesMultiTenancy.Domain.Dto;
+using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
-using IsolatedDatabasesMultiTenancy.Domain.Dto;
 
 namespace IsolatedDatabasesMultiTenancy.Api.Configuracoes
 {

@@ -1,6 +1,6 @@
 using IsolatedDatabasesMultiTenancy.Api.Configuracoes;
+using IsolatedDatabasesMultiTenancy.Api.Dependencies;
 using IsolatedDatabasesMultiTenancy.Api.Middleware;
-using IsolatedDatabasesMultiTenancy.CrossCutting;
 using IsolatedDatabasesMultiTenancy.Domain.Tenant;
 using IsolatedDatabasesMultiTenancy.Service.AutoMapper;
 using Microsoft.AspNetCore.Authorization;

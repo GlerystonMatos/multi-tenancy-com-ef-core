@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.OData.Formatter;
+﻿using IsolatedDatabasesMultiTenancy.Api.Filter;
+using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using IsolatedDatabasesMultiTenancy.Api.Filter;
 using System;
 using System.ComponentModel;
 using System.IO;

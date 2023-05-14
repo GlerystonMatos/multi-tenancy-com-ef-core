@@ -1,5 +1,5 @@
 ﻿using IsolatedDatabasesMultiTenancy.Domain.Dto;
-using IsolatedDatabasesMultiTenancy.Domain.Interfaces.Common;
+using IsolatedDatabasesMultiTenancy.Domain.Interfaces.Base;
 
 namespace IsolatedDatabasesMultiTenancy.Domain.Interfaces.Services
 {

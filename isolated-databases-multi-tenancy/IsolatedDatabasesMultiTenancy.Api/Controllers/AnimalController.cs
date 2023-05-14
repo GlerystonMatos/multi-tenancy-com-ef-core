@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Query;
-using IsolatedDatabasesMultiTenancy.Domain.Dto;
+﻿using IsolatedDatabasesMultiTenancy.Domain.Dto;
 using IsolatedDatabasesMultiTenancy.Domain.Exception;
 using IsolatedDatabasesMultiTenancy.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using System.Linq;
 
 namespace IsolatedDatabasesMultiTenancy.Api.Controllers

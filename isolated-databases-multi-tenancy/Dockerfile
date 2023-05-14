@@ -3,18 +3,14 @@ WORKDIR /app
 
 COPY *.sln ./
 COPY IsolatedDatabasesMultiTenancy.Api/*.csproj ./IsolatedDatabasesMultiTenancy.Api/
-COPY IsolatedDatabasesMultiTenancy.CrossCutting/*.csproj ./IsolatedDatabasesMultiTenancy.CrossCutting/
+COPY IsolatedDatabasesMultiTenancy.Data/*.csproj ./IsolatedDatabasesMultiTenancy.Data/
 COPY IsolatedDatabasesMultiTenancy.Domain/*.csproj ./IsolatedDatabasesMultiTenancy.Domain/
-COPY IsolatedDatabasesMultiTenancy.NUnitTest/*.csproj ./IsolatedDatabasesMultiTenancy.NUnitTest/
-COPY IsolatedDatabasesMultiTenancy.Repositorie/*.csproj ./IsolatedDatabasesMultiTenancy.Repositorie/
 COPY IsolatedDatabasesMultiTenancy.Service/*.csproj ./IsolatedDatabasesMultiTenancy.Service/
 RUN dotnet restore
 
 COPY IsolatedDatabasesMultiTenancy.Api/. ./IsolatedDatabasesMultiTenancy.Api/
-COPY IsolatedDatabasesMultiTenancy.CrossCutting/. ./IsolatedDatabasesMultiTenancy.CrossCutting/
+COPY IsolatedDatabasesMultiTenancy.Data/. ./IsolatedDatabasesMultiTenancy.Data/
 COPY IsolatedDatabasesMultiTenancy.Domain/. ./IsolatedDatabasesMultiTenancy.Domain/
-COPY IsolatedDatabasesMultiTenancy.NUnitTest/. ./IsolatedDatabasesMultiTenancy.NUnitTest/
-COPY IsolatedDatabasesMultiTenancy.Repositorie/. ./IsolatedDatabasesMultiTenancy.Repositorie/
 COPY IsolatedDatabasesMultiTenancy.Service/. ./IsolatedDatabasesMultiTenancy.Service/
 
 WORKDIR /app/IsolatedDatabasesMultiTenancy.Api
