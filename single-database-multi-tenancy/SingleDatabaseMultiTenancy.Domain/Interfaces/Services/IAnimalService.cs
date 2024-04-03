@@ -1,5 +1,5 @@
 ﻿using SingleDatabaseMultiTenancy.Domain.Dto;
-using SingleDatabaseMultiTenancy.Domain.Interfaces.Common;
+using SingleDatabaseMultiTenancy.Domain.Interfaces.Base;
 
 namespace SingleDatabaseMultiTenancy.Domain.Interfaces.Services
 {

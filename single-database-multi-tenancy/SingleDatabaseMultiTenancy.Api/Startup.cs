@@ -10,8 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SingleDatabaseMultiTenancy.Api.Configuracoes;
+using SingleDatabaseMultiTenancy.Api.Dependencies;
 using SingleDatabaseMultiTenancy.Api.Middleware;
-using SingleDatabaseMultiTenancy.CrossCutting;
 using SingleDatabaseMultiTenancy.Service.AutoMapper;
 using Swashbuckle.AspNetCore.SwaggerUI;
 

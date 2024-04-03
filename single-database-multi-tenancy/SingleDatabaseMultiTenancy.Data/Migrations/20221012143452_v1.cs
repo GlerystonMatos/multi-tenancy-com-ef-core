@@ -3,7 +3,7 @@ using System;
 
 #nullable disable
 
-namespace IsolatedDatabasesMultiTenancy.Data.Migrations
+namespace SingleDatabaseMultiTenancy.Data.Migrations
 {
     public partial class v1 : Migration
     {
@@ -14,7 +14,8 @@ namespace IsolatedDatabasesMultiTenancy.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tenant = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +29,8 @@ namespace IsolatedDatabasesMultiTenancy.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tenant = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,20 +39,20 @@ namespace IsolatedDatabasesMultiTenancy.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Animal",
-                columns: new[] { "Id", "Nome" },
+                columns: new[] { "Id", "Nome", "Tenant" },
                 values: new object[,]
                 {
-                    { new Guid("1dfc4a8d-7ed1-443c-9cc7-ac71ea9d003b"), "Cachorro" },
-                    { new Guid("8b5c8482-f2ec-4cf6-aaa8-20ec25112cd7"), "Hamster" }
+                    { new Guid("1dfc4a8d-7ed1-443c-9cc7-ac71ea9d003b"), "Cachorro", "Tenant01" },
+                    { new Guid("8b5c8482-f2ec-4cf6-aaa8-20ec25112cd7"), "Hamster", "Tenant02" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Usuario",
-                columns: new[] { "Id", "Login", "Nome", "Senha" },
+                columns: new[] { "Id", "Login", "Nome", "Senha", "Tenant" },
                 values: new object[,]
                 {
-                    { new Guid("10b42acc-45bd-460a-9edd-d568ff236e37"), "Teste02", "Teste 02", "4567" },
-                    { new Guid("d78a657f-66fa-43f2-a535-212e6bfb6630"), "Teste01", "Teste 01", "1234" }
+                    { new Guid("10b42acc-45bd-460a-9edd-d568ff236e37"), "Teste02", "Teste 02", "4567", "Tenant02" },
+                    { new Guid("d78a657f-66fa-43f2-a535-212e6bfb6630"), "Teste01", "Teste 01", "1234", "Tenant01" }
                 });
         }
 

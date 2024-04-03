@@ -39,10 +39,10 @@ namespace SingleDatabaseMultiTenancy.Api.Controllers
             _tenantService.Set(login.Tenant);
             _logger.LogInformation("Tenant: " + _tenantService.Get());
 
-            UsuarioDto usuarioDto = _usuarioService.ObterUsuarioParaAutenticacao(login);
-            _logger.LogInformation("Login realizado: " + usuarioDto.Nome);
+            UsuarioDto usuario = _usuarioService.ObterUsuarioParaAutenticacao(login);
+            _logger.LogInformation("Login realizado: " + usuario.Nome);
 
-            return Ok(new TokenDto(AccessToken.GenerateToken(usuarioDto)));
+            return Ok(new TokenDto(AccessToken.GenerateToken(usuario)));
         }
 
         /// <summary>
