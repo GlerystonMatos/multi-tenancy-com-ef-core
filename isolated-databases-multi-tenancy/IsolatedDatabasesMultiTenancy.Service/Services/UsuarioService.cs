@@ -25,14 +25,12 @@ namespace IsolatedDatabasesMultiTenancy.Service.Services
         private UsuarioDto PesquisarPorLoginSenha(string login, string senha)
             => _mapper.Map<UsuarioDto>(_usuarioRepository.PesquisarPorLoginSenha(login, senha));
 
-        public UsuarioDto ObterUsuarioParaAutenticacao(LoginDto loginDto)
+        public UsuarioDto ObterUsuarioParaAutenticacao(LoginDto login)
         {
-            UsuarioDto usuario = PesquisarPorLoginSenha(loginDto.Login, loginDto.Senha);
+            UsuarioDto usuario = PesquisarPorLoginSenha(login.Login, login.Senha);
 
             if (usuario == null)
-            {
                 throw new IsolatedDatabasesMultiTenancyException("Usuário não localizado.");
-            }
 
             return usuario;
         }

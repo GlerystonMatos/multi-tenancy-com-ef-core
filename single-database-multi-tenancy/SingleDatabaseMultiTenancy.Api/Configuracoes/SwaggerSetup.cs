@@ -52,6 +52,7 @@ namespace SingleDatabaseMultiTenancy.Api.Configuracoes
 
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
                 s.IncludeXmlComments(xmlPath);
 
                 s.SchemaFilter<SwaggerSchemaFilter>();

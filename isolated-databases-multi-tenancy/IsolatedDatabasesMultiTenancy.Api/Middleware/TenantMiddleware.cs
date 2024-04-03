@@ -27,10 +27,9 @@ namespace IsolatedDatabasesMultiTenancy.Api.Middleware
             TenantConfiguration tenant = _options.Value.Tenants.Where(t => t.Name.Equals("Tenant00")).SingleOrDefault();
 
             Claim clain = context.User.Claims.Where(c => c.Type.Equals("tenant")).SingleOrDefault();
+
             if (clain != null)
-            {
                 tenant = _options.Value.Tenants.Where(t => t.Name.Equals(clain.Value)).SingleOrDefault();
-            }
 
             _tenantService.Set(tenant);
             _logger.LogInformation("Tenant: " + tenant.Name);

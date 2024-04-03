@@ -5,6 +5,6 @@ namespace SingleDatabaseMultiTenancy.Domain.Interfaces.Services
 {
     public interface IUsuarioService : IService<UsuarioDto>
     {
-        UsuarioDto ObterUsuarioParaAutenticacao(LoginDto loginDto);
+        UsuarioDto ObterUsuarioParaAutenticacao(LoginDto login);
     }
 }

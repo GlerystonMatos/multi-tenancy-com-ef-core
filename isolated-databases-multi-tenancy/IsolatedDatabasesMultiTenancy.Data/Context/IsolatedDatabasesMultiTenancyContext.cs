@@ -44,6 +44,7 @@ namespace IsolatedDatabasesMultiTenancy.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             TenantConfiguration configuration = _tenantService.Get();
+
             if (configuration != null)
             {
                 builder.UseSqlServer(configuration.ConnectionString);

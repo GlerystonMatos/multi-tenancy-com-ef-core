@@ -43,10 +43,9 @@ namespace IsolatedDatabasesMultiTenancy.Api.Controllers
         public IActionResult Authenticate([FromBody] LoginDto login)
         {
             TenantConfiguration tenant = _options.Value.Tenants.Where(t => t.Name.Equals(login.Tenant)).SingleOrDefault();
+
             if (tenant == null)
-            {
                 tenant = _options.Value.Tenants.Where(t => t.Name.Equals("Tenant00")).SingleOrDefault();
-            }
 
             _tenantService.Set(tenant);
             _logger.LogInformation("Tenant: " + tenant.Name);

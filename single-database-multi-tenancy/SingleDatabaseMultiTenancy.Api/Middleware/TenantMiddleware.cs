@@ -21,14 +21,11 @@ namespace SingleDatabaseMultiTenancy.Api.Middleware
         public Task HandleAsync(AuthorizationHandlerContext context)
         {
             Claim clain = context.User.Claims.Where(c => c.Type.Equals("tenant")).SingleOrDefault();
+
             if (clain != null)
-            {
                 _tenantService.Set(clain.Value);
-            }
             else
-            {
                 _tenantService.Set("");
-            }
 
             _logger.LogInformation("Tenant: " + _tenantService.Get());
             return Task.CompletedTask;
